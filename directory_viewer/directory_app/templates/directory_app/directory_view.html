@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebClue UI</title>
+</head>
+<body>
+    <h1>Enter a URI to view directories:</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    {% if directories %}
+        <h2>Directories:</h2>
+        {% for website, dirs in directories.items %}
+            <h3>{{ website }}</h3>
+            <ul>
+                {% for dir in dirs %}
+                    <li>{{ dir }}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
